@@ -1,26 +1,36 @@
 import { useState } from 'react'
 import './App.css'
+import { useEffect } from 'react'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { api } from './lib/api'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [totalSpent, setTotalSpent] = useState(0)
+  useEffect(() => {
+    async function fetchTotal() {
+      const res = await api.expenses['total-spent'].$get();
+      const data = await res.json()
+      setTotalSpent(data.total)
+    }
+    fetchTotal()
+  }, [])
 
   return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          up
-        </button>
-        <button onClick={() => setCount((count) => count - 1)}>
-          down
-        </button>
-
-        <p>
-          {count}
-        </p>
-
-      </div>
-    </>
+    <Card className="w-[350px]">
+      <CardHeader>
+        <CardTitle>Total Spent</CardTitle>
+        <CardDescription>The total amount you've spent</CardDescription>
+      </CardHeader>
+      <CardContent>
+        {totalSpent}
+      </CardContent>
+    </Card>
   )
 }
 
