@@ -1,0 +1,17 @@
+{
+  "name": "app",
+  "module": "backend/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun backend/index.ts",
+    "dev": "bun --watch backend/index.ts"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.4.2",
+    "hono": "^4.6.14",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
