@@ -1,22 +1,22 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { Input } from '@/components/ui/input';
-import { Label } from '@radix-ui/react-label';
-import { Button } from '@/components/ui/button';
-import { useForm } from '@tanstack/react-form';
+import { Input } from '@/components/ui/input'
+import { Label } from '@radix-ui/react-label'
+import { Button } from '@/components/ui/button'
+import { useForm } from '@tanstack/react-form'
 import type { FieldApi } from '@tanstack/react-form'
 
 function FieldInfo({ field }: { field: FieldApi<any, any, any, any> }) {
   return (
     <>
       {field.state.meta.isTouched && field.state.meta.errors.length ? (
-        <em>{field.state.meta.errors.join(", ")}</em>
+        <em>{field.state.meta.errors.join(', ')}</em>
       ) : null}
       {field.state.meta.isValidating ? 'Validating...' : null}
     </>
   )
 }
 
-export const Route = createFileRoute("/create-expense")({
+export const Route = createFileRoute('/_authenticated/create-expense')({
   component: CreateExpense,
 })
 
@@ -30,9 +30,9 @@ function CreateExpense() {
     },
     onSubmit: async ({ value }) => {
       // Do something with form data
-      await new Promise(r => setTimeout(r, 3000))
+      await new Promise((r) => setTimeout(r, 3000))
       console.log(value)
-      navigate({ to: "/expenses" })
+      navigate({ to: '/expenses' })
     },
   })
   return (
@@ -41,16 +41,15 @@ function CreateExpense() {
       <form.Provider>
         <form
           onSubmit={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            void form.handleSubmit();
+            e.preventDefault()
+            e.stopPropagation()
+            void form.handleSubmit()
           }}
           className="flex flex-col gap-y-4 max-w-xl m-auto"
         >
           <form.Field
             name="title"
-            validators={{
-            }}
+            validators={{}}
             children={(field) => (
               <div>
                 <Label htmlFor={field.name}>Title</Label>
@@ -70,8 +69,7 @@ function CreateExpense() {
 
           <form.Field
             name="amount"
-            validators={{
-            }}
+            validators={{}}
             children={(field) => (
               <div>
                 <Label htmlFor={field.name}>Amount</Label>
@@ -116,12 +114,12 @@ function CreateExpense() {
             selector={(state) => [state.canSubmit, state.isSubmitting]}
             children={([canSubmit, isSubmitting]) => (
               <Button className="mt-4" type="submit" disabled={!canSubmit}>
-                {isSubmitting ? "..." : "Submit"}
+                {isSubmitting ? '...' : 'Submit'}
               </Button>
             )}
           />
         </form>
       </form.Provider>
     </div>
-  );
+  )
 }

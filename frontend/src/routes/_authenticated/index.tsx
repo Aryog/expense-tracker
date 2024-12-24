@@ -20,7 +20,7 @@ async function getTotalSpent() {
   return data;
 }
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/_authenticated/')({
   component: Index,
 })
 

@@ -1,15 +1,18 @@
-import app from './app'
-import { z } from 'zod'
+import app from "./app";
+import { z } from "zod";
 
 const ServeEnv = z.object({
-	PORT: z.string().regex(/^\d+$/, "Port must be a numeric string").default("3000").transform(Number),
-})
-
+	PORT: z
+		.string()
+		.regex(/^\d+$/, "Port must be a numeric string")
+		.default("3000")
+		.transform(Number),
+});
 const ProcessEnv = ServeEnv.parse(process.env);
 
 const server = Bun.serve({
 	port: ProcessEnv.PORT,
-	hostname: "0.0.0.0",
+	hostname: "127.0.0.1",
 	fetch: app.fetch,
 });
 
