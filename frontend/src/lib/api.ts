@@ -1,7 +1,7 @@
 import { hc } from "hono/client";
-import { type ApiRoutes } from "@backend/app";
+import { type ApiRoutes } from "../../../backend/app";
 import { queryOptions } from "@tanstack/react-query";
-import { type CreateExpense } from "@backend/sharedTypes";
+import { type CreateExpense } from "../../../backend/sharedTypes";
 
 const client = hc<ApiRoutes>("/");
 

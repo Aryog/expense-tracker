@@ -7,12 +7,14 @@
     "dev": "bun --watch backend/index.ts"
   },
   "dependencies": {
+    "@electric-sql/pglite": "^0.2.15",
     "@hono/zod-validator": "^0.4.2",
     "@kinde-oss/kinde-typescript-sdk": "^2.9.1",
     "@tanstack/react-query": "^5.62.8",
     "drizzle-orm": "^0.38.2",
     "drizzle-zod": "^0.6.0",
     "hono": "^4.6.14",
+    "pg": "^8.13.1",
     "postgres": "^3.4.5",
     "zod": "^3.24.1"
   },
