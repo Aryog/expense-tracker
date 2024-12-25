@@ -10,10 +10,14 @@
     "@hono/zod-validator": "^0.4.2",
     "@kinde-oss/kinde-typescript-sdk": "^2.9.1",
     "@tanstack/react-query": "^5.62.8",
+    "drizzle-orm": "^0.38.2",
+    "drizzle-zod": "^0.6.0",
     "hono": "^4.6.14",
+    "postgres": "^3.4.5",
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "drizzle-kit": "^0.30.1"
   }
 }
