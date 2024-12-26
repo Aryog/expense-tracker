@@ -15,21 +15,38 @@ jobs:
       - name: Setup Bun Runtime
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: latest
+          bun-version: 'latest'
 
-      - name: Install dependencies and build
+      - name: Install dependencies
+        run: bun install
+
+      # Only run build and test if the scripts exist
+      - name: Check and run build script
         run: |
-          bun install
-          bun run build --if-present
-          bun run test --if-present
+          if grep -q "\"build\":" package.json; then
+            bun run build
+          else
+            echo "No build script found - skipping build step"
+          fi
+
+      - name: Check and run test script
+        run: |
+          if grep -q "\"test\":" package.json; then
+            bun run test
+          else
+            echo "No test script found - skipping test step"
+          fi
 
       - name: Prepare deployment package
         run: |
           # Create deployment script for Azure
           echo "#!/bin/bash" > startup.sh
           echo "cd /home/site/wwwroot" >> startup.sh
+          echo "curl -fsSL https://bun.sh/install | bash" >> startup.sh
+          echo "export BUN_INSTALL=\"\$HOME/.bun\"" >> startup.sh
+          echo "export PATH=\"\$BUN_INSTALL/bin:\$PATH\"" >> startup.sh
           echo "bun install" >> startup.sh
-          echo "bun start" >> startup.sh
+          echo "bun index.ts" >> startup.sh  # Adjust this line based on your entry point
           chmod +x startup.sh
 
       - name: Zip artifact for deployment
