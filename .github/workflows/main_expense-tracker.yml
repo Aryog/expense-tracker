@@ -74,4 +74,4 @@ jobs:
           app-name: 'expense-tracker'
           slot-name: 'Production'
           package: .
-          startup-command: '/home/site/wwwroot/startup.sh'         
+          startup-command: '/home/site/wwwroot/startup.sh'
