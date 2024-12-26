@@ -5,7 +5,6 @@
   "scripts": {
     "start": "bun backend/index.ts",
     "dev": "bun --watch backend/index.ts",
-    "build": "bunx --bun vite build",
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.2.15",

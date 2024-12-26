@@ -46,7 +46,7 @@ jobs:
           echo "export BUN_INSTALL=\"\$HOME/.bun\"" >> startup.sh
           echo "export PATH=\"\$BUN_INSTALL/bin:\$PATH\"" >> startup.sh
           echo "bun install" >> startup.sh
-          echo "bun index.ts" >> startup.sh  # Adjust this line based on your entry point
+          echo "bun backend/index.ts" >> startup.sh  # Adjust this line based on your entry point
           chmod +x startup.sh
 
       - name: Zip artifact for deployment
